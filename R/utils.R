@@ -88,3 +88,20 @@
     }
     else NULL
 }
+
+##' @title Function to extract a consistent set of variables from a
+##' \code{\link{packageDescription}} object in a consistent form.
+##' @param x an object returned by \code{\link{packageDescription}}.
+##'
+##' @return a character vector
+##'
+##' @author Gavin L. Simpson
+flattenPkgDesc <- function(x) {
+    take <- c("Package","Version","LinkingTo","SystemRequirements")
+    x <- x[take]
+    nas <- is.na(x)
+    out <- as.character(x)
+    out[nas] <- NA
+    names(out) <- take
+    out
+}
