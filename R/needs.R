@@ -84,6 +84,14 @@
     out
 }
 
+##' @param x an R object of class \code{\link{needs}}.
+##' @param ... additional arguments passes to \code{\link{print}}.
+##'
+##' @rdname needs
+##'
+##' @S3method print needs
+##' @method print needs
+##'
 `print.needs` <- function(x, ...) {
     writeLines("Session Dependencies")
     writeLines("====================")
