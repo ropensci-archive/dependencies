@@ -5,16 +5,6 @@
 ##'
 `needs_session` <- function(which = c("Depends", "Imports", "LinkingTo")) {
 
-    ## function to extract a consistent set of variables from a packageDescription
-    ## object
-    takeFun <- function(x) {
-        out <- character(4)
-        take <- c("Package","Version","LinkingTo","SystemRequirements")
-        names(out) <- take
-        out[take] <- as.character(x[take])
-        out
-    }
-
     ## return list filled in later
     out <- list()
 
