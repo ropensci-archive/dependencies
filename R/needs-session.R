@@ -34,7 +34,9 @@
     ## Packages attached that are not base - i.e. Depends:
     if (any(!basePkgs)) {
         otherPkgs <- pkgDesc[!basePkgs]
-        out$depends <- as.data.frame(unclass(do.call(rbind, lapply(otherPkgs, takeFun))),
+        out$depends <- as.data.frame(unclass(do.call(rbind,
+                                                     lapply(otherPkgs,
+                                                            flattenPkgDesc))),
                                      stringsAsFactors = FALSE)
     }
 
@@ -45,9 +47,12 @@
         names(loadedOnly) <- loadedOnly
         pkgDesc <- c(pkgDesc, lapply(loadedOnly, packageDescription))
         loadedOnly <- pkgDesc[loadedOnly]
-        out$imports <- as.data.frame(unclass(do.call(rbind, unname(lapply(loadedOnly, takeFun)))),
+        out$imports <- as.data.frame(unclass(do.call(rbind,
+                                                     unname(lapply(loadedOnly,
+                                                                   flattenPkgDesc)))),
                                      stringsAsFactors = FALSE)
-        dimnames(out$imports) <- list(seq_len(nrow(out$imports)), dimnames(out$imports)[[2]])
+        dimnames(out$imports) <- list(seq_len(nrow(out$imports)),
+                                      dimnames(out$imports)[[2]])
     }
 
     ## Other Dependencies -- polled via List of Packages & their LinkingTo fields
@@ -65,7 +70,9 @@
         deps <- deps[!deps %in% pkgs[basePkgs]]
 
         depPkgs <- lapply(deps, packageDescription)
-        out$other <- as.data.frame(unclass(do.call(rbind, lapply(depPkgs, takeFun))))
+        out$other <- as.data.frame(unclass(do.call(rbind,
+                                                   lapply(depPkgs,
+                                                          flattenPkgDesc))))
     }
 
     out
