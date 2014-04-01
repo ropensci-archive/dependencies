@@ -4,6 +4,7 @@
 ##' the current R session.
 ##'
 ##' @details TODO
+##' @param pkg character; a package name (currently ignored).
 ##' @param which logical; what dependencies should be looked for. See
 ##' argument of same name in \code{\link{packageDescription}}.
 ##'
@@ -15,7 +16,7 @@
 ##'
 ##' @importFrom tools package_dependencies
 ##'
-`needs` <- function(which = c("Depends", "Imports", "LinkingTo")) {
+`needs` <- function(pkg, which = c("Depends", "Imports", "LinkingTo")) {
     ## return list filled in later
     out <- list()
 

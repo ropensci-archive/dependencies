@@ -3,11 +3,14 @@
 \alias{print.needs}
 \title{Resolve dependencies for the running session}
 \usage{
-needs(which = c("Depends", "Imports", "LinkingTo"))
+needs(pkg, which = c("Depends", "Imports", "LinkingTo"))
 
 \method{print}{needs}(x, ...)
 }
 \arguments{
+  \item{pkg}{character; a package name (currently
+  ignored).}
+
   \item{which}{logical; what dependencies should be looked
   for. See argument of same name in
   \code{\link{packageDescription}}.}
