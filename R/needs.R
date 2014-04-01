@@ -12,6 +12,9 @@
 ##' @author Gavin L. Simpson
 ##'
 ##' @export
+##'
+##' @importFrom tools package_dependencies
+##'
 `needs` <- function(which = c("Depends", "Imports", "LinkingTo")) {
     ## return list filled in later
     out <- list()
@@ -66,7 +69,7 @@
         need <- c(out$depends[, "Package"], out$imports[, "Package"])
         need <- c(need, out$depends[, "LinkingTo"], out$imports[, "LinkingTo"])
         need <- need[!is.null(need)]
-        deps <- tools::package_dependencies(need, pdb, which = which, recursive = TRUE)
+        deps <- package_dependencies(need, pdb, which = which, recursive = TRUE)
         deps <- unique(unlist(deps))
         got <-  unname(unlist(c(out$depends[, "Package"], out$imports[, "Package"])))
         deps <- deps[!deps %in% got]
