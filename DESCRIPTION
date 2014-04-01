@@ -1,0 +1,13 @@
+Package: dependencies
+Type: Package
+Title: Functions to derive dependencies for R sessions for use in reproducible
+    research
+Version: 0.0-1
+Date: 2014-03-31
+Authors@R: person(given = c("Gavin", "L."), family = "Simpson",
+    role = c("aut","cre"), email = "ucfagls@gmail.com")
+Maintainer: Gavin L. Simpson <ucfagls@gmail.com>
+Description: A suite of functions to derive the R package dependencies required
+    to reproduce a given R session, such as that used to build a knitr or
+    Sweave document.
+Licence: GPL-2
