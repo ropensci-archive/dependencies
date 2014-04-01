@@ -1,0 +1,5 @@
+## ignore backup files
+*~
+
+## ignore history
+.Rhistory
