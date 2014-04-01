@@ -3,6 +3,9 @@ Type: Package
 Title: Functions to derive dependencies for R sessions for use in reproducible
     research
 Version: 0.0-1
+Imports:
+    jsonlite (>= 0.9.4),
+    tools
 Date: 2014-03-31
 Authors@R: person(given = c("Gavin", "L."), family = "Simpson",
     role = c("aut","cre"), email = "ucfagls@gmail.com")
