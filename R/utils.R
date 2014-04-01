@@ -28,6 +28,10 @@
 ##' \code{tools:::getDepMtrx}, and \code{tools:::getRemotePkgDepends} in R.
 ##'
 ##' @rdname packageDependencies
+##'
+##' @importFrom tools getDepList
+##' @importFrom utils installed.packages
+##'
 `packageDependencies` <- function (pkg, recursive = TRUE, local = TRUE, reduce = TRUE,
                                    lib.loc = NULL,
                                    which = c("Depends","Imports","Suggests")) {
@@ -36,11 +40,11 @@
     which <- match.arg(which)
     if (length(pkg) != 1L)
         stop("argument 'pkg' must be of length 1")
-    instPkgs <- utils::installed.packages(lib.loc = lib.loc)
+    instPkgs <- installed.packages(lib.loc = lib.loc)
     depMtrx <- getDependencyMatrix(pkg, instPkgs, local, which = which)
     if (is.null(depMtrx))
         stop(gettextf("package '%s' was not found", pkg), domain = NA)
-    tools::getDepList(depMtrx, instPkgs, recursive, local, reduce, lib.loc)
+    getDepList(depMtrx, instPkgs, recursive, local, reduce, lib.loc)
 }
 
 ##' @param instPkgs A matrix specifying all packages installed locally, as
@@ -48,12 +52,14 @@
 ##'
 ##' @rdname packageDependencies
 ##'
+##' @importFrom tools package.dependencies
+##'
 `getDependencyMatrix` <- function(pkg, instPkgs, local = TRUE, which)  {
     ## copy of tools:::getDepMtrx but allows you to specify
     ## the type of dependencies in package.dependencies
     row <- match(pkg, instPkgs[, "Package"])
     if (!is.na(row))
-        pkgDeps <- tools::package.dependencies(instPkgs[row, ], depLevel = which)[[1L]]
+        pkgDeps <- package.dependencies(instPkgs[row, ], depLevel = which)[[1L]]
     else {
         if (local)
             pkgDeps <- NULL
@@ -68,6 +74,8 @@
 ##'
 ##' @rdname packageDependencies
 ##'
+##' @importFrom tools package.dependencies
+##'
 `getRemoteDependencies` <- function (pkg, contriburl = getOption("repos"), which) {
     ## copy of tools:::getRemotePkgDepends but allows you to specify
     ## the type of dependencies in package.dependencies
@@ -76,7 +84,7 @@
     cran <- utils::available.packages(contriburl = contriburl)
     whichRow <- which(pkg == cran[, "Package"])
     if (length(whichRow)) {
-        return(tools::package.dependencies(cran[whichRow, ], depLevel = which)[[1L]])
+        return(package.dependencies(cran[whichRow, ], depLevel = which)[[1L]])
     }
     else NULL
 }

@@ -30,6 +30,11 @@ current R session.
 \details{
 TODO
 }
+\examples{
+needs()
+
+needs(which = "Depends")
+}
 \author{
 Gavin L. Simpson
 }

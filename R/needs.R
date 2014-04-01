@@ -16,6 +16,10 @@
 ##'
 ##' @importFrom tools package_dependencies
 ##'
+##' @examples
+##' needs()
+##'
+##' needs(which = "Depends")
 `needs` <- function(pkg, which = c("Depends", "Imports", "LinkingTo")) {
     ## return list filled in later
     out <- list()
