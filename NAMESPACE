@@ -1,6 +1,7 @@
 S3method(print,needs)
 export(jsonify)
 export(needs)
+export(pkgurls)
 importFrom(jsonlite,toJSON)
 importFrom(tools,getDepList)
 importFrom(tools,package.dependencies)
