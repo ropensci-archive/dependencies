@@ -1,7 +1,6 @@
 Package: dependencies
 Type: Package
-Title: Functions to derive dependencies for R sessions for use in reproducible
-    research
+Title: Functions to derive dependencies for R sessions for use in reproducible research
 Version: 0.0-1
 Imports:
     jsonlite (>= 0.9.4),
